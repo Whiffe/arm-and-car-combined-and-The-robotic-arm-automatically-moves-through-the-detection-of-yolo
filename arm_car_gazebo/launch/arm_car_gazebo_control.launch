@@ -1,0 +1,17 @@
+<launch>
+
+    <!-- 启动Gazebo  -->
+    <include file="$(find arm_car_gazebo)/launch/arm_car_world.launch" />   
+
+    <!-- 启动Gazebo controllers -->
+    <include file="$(find arm_car_gazebo)/launch/arm_car_gazebo_controller.launch" />   
+
+    <!-- 启动darknet_ros的yolo检测-->
+    <include file="$(find darknet_ros)/launch/darknet_ros.launch">
+    </include>
+
+    <!-- 启动监听订阅yolo检测话题的python --><!---->
+    <node pkg="arm_car_gazebo" name="arm_listener_yolo" type="arm_listener_yolo.py" output="screen">
+    </node>
+
+</launch>
